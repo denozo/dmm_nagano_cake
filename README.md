@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ながのCAKE
 
-Things you may want to cover:
+概要
+長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイトです。
 
-* Ruby version
+背景
+元々近隣住民が顧客だったが、昨年始めたInstagramから人気となり全国から注文が来るようになったため、
+管理機能を含んだ通販サイトを開設しようと思い至った。
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+＊以下
