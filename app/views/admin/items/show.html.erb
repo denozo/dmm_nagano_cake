@@ -1,25 +1,14 @@
 <h1>商品詳細</h1>
 
+<p><strong>商品画像</strong><%= attachment_image_tag @item, :image, :fill, 60, 60 %></p>
+
 <p><strong>商品名</strong><%= @item.name %></p>
 <p><strong>商品説明</strong><%= @item.introduction %></p>
-<p><strong>ジャンル</strong><%= @item.genre_id %></p>
 
-<p><strong>税込価格</strong>
-<% @genre.each do |genre| %>
-  <%= genre.name %>
-<% end %>
-</p>
+
+<p><strong>ジャンル</strong><%= @genre.name %></p>
+
+<p><strong>税抜価格</strong><%= @item.price %></p>
 
 <p><strong>販売ステータス</strong><%= @item.is_active %></p>
 
-<!--以下を参考に-->
-
-<% @post_images.each do |post_image| %>
-<div>
-  <%= attachment_image_tag post_image, :image %>
-  <p>投稿ユーザー画像：<%= image_tag('sample-author1.jpg') %></p>
-  <p>ショップ名：<%= post_image.shop_name %></p>
-  <p>説明：<%= post_image.caption %></p>
-  <p>ユーザーネーム：<%= post_image.user.name %></p>
-</div>
-<% end %>
