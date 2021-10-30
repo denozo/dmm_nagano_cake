@@ -1,7 +1,6 @@
-<h2>新規会員登録</h2>
+<h2>会員情報編集</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<%= form_with model: @customer, url: customers_path, local: true do |f| %>
   
   <div class="field">
     <%= f.label "（姓）" %><br />
@@ -24,7 +23,7 @@
   </div>
   
   <div class="field">
-    <%= f.label "" %><br />
+    <%= f.label "メールアドレス" %><br />
     <%= f.text_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -42,25 +41,9 @@
     <%= f.label "電話番号(ハイフンなし)" %><br />
     <%= f.number_field :telephone_number, autofocus: true, autocomplete: "telephone" %>
   </div>
-  
-  
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
 
   <div class="actions">
-    <%= f.submit "新規登録" %>
+    <%= f.submit "編集内容を保存" %>
+    
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
