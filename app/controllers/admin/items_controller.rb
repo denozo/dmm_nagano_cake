@@ -2,7 +2,6 @@ class Admin::ItemsController < ApplicationController
   
   def index
     @items = Item.all
-    @genre = Genre.all.includes(:name)
   end
 
   def new
