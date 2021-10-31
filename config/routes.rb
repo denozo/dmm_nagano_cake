@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only:[:index, :show]
     resource :customers, only:[:index, :edit, :update, :show]
+    root to: 'homes#top'
+    get 'home/about', to: 'homes#about'
   end
   
   

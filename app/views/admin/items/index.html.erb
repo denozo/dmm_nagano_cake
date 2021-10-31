@@ -1,29 +1,35 @@
-<h1>商品一覧</h1>
+<div class="container-md">
+  <div class="row">
+    <div class="col-lg-11">
+      <h3><span>　商品一覧</span></h3>
+    </div>
+    <div class="col">
+      <%= link_to "", new_admin_item_path, class: 'fas fa-plus-circle' %>
+    </div>
+  </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= item.name %></td>
-      <td><%= item.price %></td>
-
-        <td><%= item.genre.name %></td>
-    
-      <td><%= item.is_active %></td>
-      <td></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-
+  <div class="row">
+      <table class="table">
+        <thead>
+          <tr class="table-light">
+            <th class="col-1">商品ID</th>
+            <th class="col-4">商品名</th>
+            <th class="col-1">税抜価格</th>
+            <th class="col-3">ジャンル</th>
+            <th class="col-2">ステータス</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item.id), class: 'item-link' %></td>
+            <td><%= item.price %></td>
+            <td><%= item.genre.name %></td>
+            <td><%= item.is_active %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+</div>

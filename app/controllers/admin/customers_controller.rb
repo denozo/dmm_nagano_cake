@@ -1,4 +1,8 @@
 class Admin::CustomersController < ApplicationController
+  
+  #ログインしていないユーザーが操作できないように制御
+  before_action :authenticate_admin!
+  
   def index
     @customers = Customer.all
   end
