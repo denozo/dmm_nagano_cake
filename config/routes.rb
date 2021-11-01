@@ -1,23 +1,5 @@
 Rails.application.routes.draw do
-  
 
-  namespace :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroyall'
-    get 'cart_items/create'
-  end
-  
-  namespace :public do
-    get 'orders/new'
-    get 'orders/confirm'
-    get 'orders/thanks'
-    get 'orders/create'
-    get 'orders/index'
-    get 'orders/show'
-  end
-  
   namespace :admin do
     root to: 'homes#top'
     resources :genres, only:[:index, :create, :edit, :update]
@@ -29,7 +11,8 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show]
     resource :customers, only:[:index, :edit, :update, :show]
     resource :addresse, only:[:index, :edit, :create, :update, :destroy]
-    
+    resources :cart_items, only:[:index, :update, :destroy, :destroyall, :create]
+    resources :orders, only:[:new, :confirm, :thanks, :create, :index, :show]
     root to: 'homes#top'
     get 'home/about', to: 'homes#about'
   end

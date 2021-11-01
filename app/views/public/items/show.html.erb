@@ -1,3 +1,21 @@
-<h1>商品詳細customerページ</h1>
-
-<%= form_with model: @
+<div class="container p-5">
+  <div class="row">
+    <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
+  
+  <div class="col">
+    <div class="row">
+      <%= @item.name %>
+    </div>
+    <div class="row">
+      <%= @item.introduction %>
+    </div>
+    <div class="row">
+      ￥<%= @item.with_tax_price %>（税込）
+    </div>
+  </div>
+  
+  <%= form_with model: @cart_items, 
+  <%= f.select :amount, *[1..10] %>
+  
+  </div>
+</div>
