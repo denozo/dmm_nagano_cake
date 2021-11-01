@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     get 'home/about', to: 'homes#about'
   end
   
-  #どの記述が
+  #どの記述が適切か考える
   
   
   devise_for :admin, controllers: {

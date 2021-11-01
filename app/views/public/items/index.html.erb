@@ -1,28 +1,23 @@
-<h1>商品一覧</h1>
+<div class="container">
 
-<table>
-  <thead>
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  
-  <tbody>
+  <div class="row">
+    <h4><span>　商品一覧　</span></h4>
+  </div>
+
+  <div class="row p-5">
     <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= item.name %></td>
-      <td><%= item.price %></td>
-
-        <td><%= item.genre.name %></td>
-    
-      <td><%= item.is_active %></td>
-      <td></td>
-    </tr>
+    <div class="col">
+      <div class="item_image">
+        <%= attachment_image_tag item, :image, :fill, 200, 100 %>
+      </div>
+      <div class="item_name">
+        <%= item.name %>
+      </div>
+      <div class="item_price">
+        <%= item.with_tax_price %>
+      </div>
+    </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+
+</div>
