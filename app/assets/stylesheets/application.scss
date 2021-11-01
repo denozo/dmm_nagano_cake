@@ -27,7 +27,17 @@ header {
   margin-bottom: 20px;
 }
 
-h3 > span {
+h4 > span {
   background: #EEEEEE	;
 }
 
+
+.item-link {
+  color: #212529;
+  text-decoration:underline;
+}
+
+.item-link:hover {
+  color: #212529;
+  text-decoration:underline;
+}
