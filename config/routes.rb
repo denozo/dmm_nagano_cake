@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   
 
+  namespace :public do
+    get 'orders/new'
+    get 'orders/confirm'
+    get 'orders/thanks'
+    get 'orders/create'
+    get 'orders/index'
+    get 'orders/show'
+  end
   namespace :admin do
     root to: 'homes#top'
     resources :genres, only:[:index, :create, :edit, :update]
