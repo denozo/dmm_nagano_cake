@@ -1,21 +1,28 @@
 <div class="container p-5">
   <div class="row">
     <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
-  
-  <div class="col">
-    <div class="row">
-      <%= @item.name %>
+
+    <div class="col">
+
+      <div class="row">
+        <%= @item.name %>
+      </div>
+      <div class="row">
+        <%= @item.introduction %>
+      </div>
+      <div class="row">
+        ￥<%= @item.with_tax_price %>（税込）
+      </div>
+      <div class="row">
+        <%= form_with model: @cart_item, url:"/cart_items", loacl:true do |f| %>
+        <%= f.hidden_field :item_id, value: @item.id %>
+        <%= f.hidden_field :customer_id, value: @customer.id%>
+        <%= f.select :amount, *[1..10],include_blank: " 個数選択 " %>
+        <%= f.submit 'カートに入れる' %>
+        <% end %>
+      </div>
+
     </div>
-    <div class="row">
-      <%= @item.introduction %>
-    </div>
-    <div class="row">
-      ￥<%= @item.with_tax_price %>（税込）
-    </div>
-  </div>
-  
-  <%= form_with model: @cart_items, 
-  <%= f.select :amount, *[1..10] %>
-  
+
   </div>
 </div>
