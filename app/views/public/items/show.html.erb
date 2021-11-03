@@ -3,6 +3,10 @@
     <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
 
     <div class="col">
+      
+     <p id="notice">
+      <%= notice %> <!-- サクセスメッセージの表示 -->
+    </p>
 
       <div class="row">
         <%= @item.name %>
