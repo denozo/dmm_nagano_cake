@@ -10,21 +10,21 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only:[:index, :show]
     resource :customers, only:[:index, :edit, :update, :show]
-    resource :addresse, only:[:index, :edit, :create, :update, :destroy]
+    resources :addresses, only:[:index, :edit, :create, :update, :destroy]
     resources :cart_items, only:[:index, :update, :destroy, :destroyall, :create]
     resources :orders, only:[:new, :confirm, :thanks, :create, :index, :show]
     root to: 'homes#top'
     get 'home/about', to: 'homes#about'
   end
-  
+
   #どの記述が適切か考える
-  
-  
+
+
   devise_for :admin, controllers: {
     sessions: "admin/sessions"
   }
-  
+
   devise_for :customer
-  
-  
+
+
 end
