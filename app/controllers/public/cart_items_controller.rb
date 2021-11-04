@@ -6,6 +6,7 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = current_customer.cart_items
     @item = Item.all
+    @sum = 0
   end
 
   def update
@@ -33,16 +34,16 @@ class Public::CartItemsController < ApplicationController
         cart_item.save
         flash[:notice] = "商品の個数を追加しました！"
         redirect_to cart_items_path
-        
+
     elsif @cart_item.save
         flash[:notice] = "新規追加しました"
         redirect_to cart_items_path
     else
-      
+
       render cart_item_path
 
     end
-    
+
   end
 
   private

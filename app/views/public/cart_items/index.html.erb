@@ -34,6 +34,7 @@
             <td><%= cart_item.item.with_tax_price %></td>
             <td><%= cart_item.amount %></td>
             <td><%= cart_item.subtotal %></td>
+            <% @sum += cart_item.subtotal %>
             <td><%= link_to '削除する', cart_item_path(cart_item.id), class: 'Destroy', method: :delete, "data-confirm" => "Are you sure？" %></td>
           </tr>
           <% end %>
@@ -41,6 +42,9 @@
       </table>
     </div>
   </div>
+  
+  <p>合計金額 <%= @sum %></p>
+
 
 
 </div>
