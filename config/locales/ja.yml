@@ -5,12 +5,7 @@ ja:
       payment_method:
         credit_card: 'クレジットカード'
         transfer: '銀行振込'
-        
-        
-# ja.yml
-ja:
-  enums:
-    order:
+
       order_status:
         payment_waiting: '入金待ち'
         payment_confirmation: '銀行振込'

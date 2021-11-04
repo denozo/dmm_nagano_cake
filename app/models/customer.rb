@@ -9,5 +9,10 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   
   enum is_active: { 退会: false, 有効: true}
-
+  
+  
+   def full_address
+    '〒' + postal_code + ' ' + address + ' ' + last_name + first_name
+    end
+ 
 end
