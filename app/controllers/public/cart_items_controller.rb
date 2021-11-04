@@ -31,7 +31,7 @@ class Public::CartItemsController < ApplicationController
         cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
         cart_item.amount += params[:cart_item][:amount].to_i
         cart_item.save
-        flash[:notice] = "追加しました"
+        flash[:notice] = "商品の個数を追加しました！"
         redirect_to cart_items_path
         
     elsif @cart_item.save
