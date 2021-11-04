@@ -11,7 +11,14 @@ Rails.application.routes.draw do
     resources :items, only:[:index, :show]
     resource :customers, only:[:index, :edit, :update, :show]
     resources :addresses, only:[:index, :edit, :create, :update, :destroy]
-    resources :cart_items, only:[:index, :update, :destroy, :destroyall, :create]
+    resources :cart_items, only:[:index, :update, :destroy, :create]
+    
+    resources :cart_items do
+      collection do
+        delete 'destroyall'
+      end
+    end
+    
     resources :orders, only:[:new, :confirm, :thanks, :create, :index, :show]
     root to: 'homes#top'
     get 'home/about', to: 'homes#about'
