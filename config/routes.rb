@@ -17,12 +17,16 @@ Rails.application.routes.draw do
       end
     end
     
-    resources :orders, only:[:new, :confirm, :thanks, :create, :index, :show]
+    resource :orders, only:[:new, :create, :index, :show] do
+      collection do
+        post 'confirm'
+        get 'thanks'
+      end
+    end
+      
     root to: 'homes#top'
     get 'home/about', to: 'homes#about'
   end
-
-  #どの記述が適切か考える
 
 
   devise_for :admin, controllers: {

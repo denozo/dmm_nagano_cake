@@ -2,25 +2,48 @@
     <h4><span>　注文情報入力　</span></h4>
   </div>
 
-  <%= form_with model: @order, url: "", local:true do |f| %>
+  <%= form_with model: @order, url: confirm_orders_path, local:true do |f| %>
 
-    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-    <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
-    
-    <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-    <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
-    
-    <%= f.radio_button :addressselect, "" %>
-    <%= f.label "自身の住所" %>
-    <%= @customer.full_address %>
-    
-    
-    <%= f.radio_button :addressselect, "" %>
-    <%= f.label "登録済住所から選択" %>
-    <%= f.select :address, options_from_collection_for_select(@addresses, :id, :full_address) %>
-    
-    <%= f.radio_button :addressselect, "" %>
-    <%= f.label "新しいお届け先" %>
-    
+    <label>支払方法</label>
+    <div class="">
+      <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+    </div>
+    <div class="">
+      <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+      <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+    </div>
+
+    <label>お届け先</label>
+    <div class="">
+      <%= f.radio_button :select_address, 1 %>
+      <%= f.label :select_address_1, "自身の住所" %>
+      <%= @customer.full_address %>
+    </div>
+
+    <div class="">
+      <%= f.radio_button :select_address, 2 %>
+      <%= f.label :select_address_2, "登録済住所から選択" %>
+      <%= f.select :address_id, options_from_collection_for_select(@addresses, :id, :full_address) %>
+    </div>
+
+    <div class="">
+      <%= f.radio_button :select_address, 3 %>
+      <%= f.label :select_address_3, "新しいお届け先" %>
+
+      <div class="">
+
+        <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+        <%= f.text_field :postal_code %>
+
+        <%= f.label :address, "住所" %>
+        <%= f.text_field :address %>
+
+        <%= f.label :name, "宛名" %>
+        <%= f.text_field :name %>
+
+    </div>
+
+    <%= f.submit '確認画面へ進む' %>
 
   <% end %>
