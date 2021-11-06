@@ -7,9 +7,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    
-    @sum = 0
 
+    #new画面での支払方法の選択値により変更
     if params[:order][:select_address] == "1"
 
       @order = Order.new(order_params)
@@ -34,34 +33,57 @@ class Public::OrdersController < ApplicationController
       redirect_to cart_items_path
 
     end
-    
-    @order = current_customer.orders.new(order_params)
-    @order.save
-    
+
+  #カート内の値を取得
     @cart_items = current_customer.cart_items
-      @cart_items.each do |cart_item|
-        @order_details = @oder.order_items.new
-        @order_details.item_id = cart_item.item.id
-        @order_details.item_id = cart_item.item.name
-        @order_details.item_id = cart_item.item.price
-        @order_details.item_id = cart_item.amount
-        @order_details.save
-      end
-      
+
+  #商品合計の計算
+    @sum = 0
+
+    @cart_items.each do |cart_item|
+      @sum += cart_item.subtotal
+    end
+
+  #請求金額の計算(商品合計＋送料)
+
+    @total_payment = @sum + 800
+
+  #orderのデータ
+    @order.total_payment = @total_payment.to_i
+    @order.shipping_cost = 800
+
+  def create
     
+    order = Order.new(params[:@order])
+    order.save
+
+    cart_items = current_customer.cart_items
+      cart_items.each do |cart_item|
+        order_details = OrderDetail.new
+        order_details.item_id = cart_item.item.id
+        order_details.order_id = order.id
+        order_details.price = cart_item.subtotal
+        order_details.amount = cart_item.amount
+        order_details.making_status = "0"
+        order_details.save
+      end
+
     cart_items = current_customer.cart_items
     cart_items.destroy_all
+
     redirect_to thanks_orders_path
 
   end
 
+
   def thanks
   end
 
-  def create
+
   end
 
   def index
+    @orders = Order.all
   end
 
   def show
@@ -69,9 +91,8 @@ class Public::OrdersController < ApplicationController
 
   private
 
-
   def order_params
-    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :order_status)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method)
   end
 
 end

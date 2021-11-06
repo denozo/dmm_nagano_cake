@@ -16,16 +16,18 @@ Rails.application.routes.draw do
         delete 'destroyall'
       end
     end
-    
-    resource :orders, only:[:new, :create, :index, :show] do
+
+    resources :orders, only:[:new, :create, :index, :show] do
       collection do
-        post 'confirm'
+        post 'confirm', to: 'orders#confirm'
         get 'thanks'
       end
     end
-      
+
     root to: 'homes#top'
     get 'home/about', to: 'homes#about'
+
+
   end
 
 
@@ -33,7 +35,10 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
-  devise_for :customer
 
+  devise_for :customer, controllers: {
+    registrations: 'public/registrations',
+    sessions: "public/sessions"
+  }
 
 end

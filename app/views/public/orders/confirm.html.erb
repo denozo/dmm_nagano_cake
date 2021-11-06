@@ -20,19 +20,20 @@
             <td><%= cart_item.amount %></td>
             <td><%= cart_item.subtotal %></td>
           </tr>
-            <% @sum += cart_item.subtotal %>
           <% end %>
         </tbody>
       </table>
-
 
       <%= @order.payment_method_i18n %>
       <%= @order.postal_code %>
       <%= @order.address %>
       <%= @order.name %>
-      
+
       <p>送料 800</p>
       <p>商品合計 <%= @sum %></p>
-      <p>合計金額 <%= @sum + 800 %></p>
-      
-     <%= f.submit '注文を確定する' %>
+      <p>合計金額 <%= @total_payment %></p>
+
+
+      <%= form_with model: @order, url: '/orders', method: :post, local: true do |f| %>
+      	<%= f.submit '注文を確定する' %>
+      <% end %>
