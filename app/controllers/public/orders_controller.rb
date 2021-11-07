@@ -1,5 +1,8 @@
 class Public::OrdersController < ApplicationController
 
+
+  before_action :authenticate_customer!
+
   def new
     @addresses = Address.all
     @customer = current_customer
@@ -57,6 +60,7 @@ class Public::OrdersController < ApplicationController
     @order.total_payment = @total_payment.to_i
     @order.shipping_cost = 800
     @order.payment_method = params[:order][:payment_method]
+    @order.customer_id = current_customer.id
 
   def create
 
@@ -89,7 +93,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    #whereメソッドでログインユーザのデータを取り出す
+    @orders = Order.where(customer_id: current_customer.id)
+
   end
 
   def show
