@@ -1,5 +1,5 @@
 class Admin::ItemsController < ApplicationController
-  
+
   #ログインしていないユーザーが操作できないように制御
   before_action :authenticate_admin!
 

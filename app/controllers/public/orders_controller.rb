@@ -1,14 +1,20 @@
 class Public::OrdersController < ApplicationController
 
   def new
-    @order = Order.new
     @addresses = Address.all
     @customer = current_customer
+    @order = Order.new
+
   end
 
   def confirm
 
-    #new画面での支払方法の選択値により変更
+    #ユーザー情報取得
+
+    @customer = current_customer
+
+    # new画面での支払方法の選択値により変更
+
     if params[:order][:select_address] == "1"
 
       @order = Order.new(order_params)
@@ -35,6 +41,7 @@ class Public::OrdersController < ApplicationController
     end
 
   #カート内の値を取得
+
     @cart_items = current_customer.cart_items
 
   #商品合計の計算
@@ -47,14 +54,13 @@ class Public::OrdersController < ApplicationController
   #請求金額の計算(商品合計＋送料)
 
     @total_payment = @sum + 800
-
-  #orderのデータ
     @order.total_payment = @total_payment.to_i
     @order.shipping_cost = 800
+    @order.payment_method = params[:order][:payment_method]
 
   def create
-    
-    order = Order.new(params[:@order])
+
+    order = Order.new(order_params)
     order.save
 
     cart_items = current_customer.cart_items
