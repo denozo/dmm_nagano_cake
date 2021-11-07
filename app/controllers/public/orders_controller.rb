@@ -96,6 +96,7 @@ class Public::OrdersController < ApplicationController
     #whereメソッドでログインユーザのデータを取り出す
     @orders = Order.where(customer_id: current_customer.id)
 
+
   end
 
   def show
