@@ -96,10 +96,23 @@ class Public::OrdersController < ApplicationController
     #whereメソッドでログインユーザのデータを取り出す
     @orders = Order.where(customer_id: current_customer.id)
 
-
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = OrderDetail.where(order_id: @order.id)
+    @item = Item.all
+    
+    #商品合計の計算
+
+    @sum = 0
+
+    @order_details.each do |order_detail|
+      @sum += order_detail.subtotal
+    end    
+    
+    
+    #商品合計はどこで計算させるのか確認
   end
 
   private
