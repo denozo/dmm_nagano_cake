@@ -6,6 +6,11 @@ class Item < ApplicationRecord
   has_many :cart_items
 
   attachment :image
+  
+  validates :name, presence: true
+  validates :image, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true  
 
   enum is_active: { 販売停止中: false, 販売中: true}
 

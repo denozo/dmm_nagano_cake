@@ -13,14 +13,19 @@
       <div class="row">
         ￥<%= @item.with_tax_price %>（税込）
       </div>
-      <div class="row">
-        <%= form_with model: @cart_item, url:"/cart_items", loacl:true do |f| %>
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.hidden_field :customer_id, value: @customer.id %>
-        <%= f.select :amount, *[1..10],include_blank: " 個数選択 " %>
-        <%= f.submit 'カートに入れる' %>
-        <% end %>
-      </div>
+
+      <!--以下ログイン時のみ表示-->
+      <% if customer_signed_in? %>
+        <div class="row">
+          <%= form_with model: @cart_item, url:"/cart_items", loacl:true do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <%= f.hidden_field :customer_id, value: @customer.id %>
+          <%= f.select :amount, *[1..10],include_blank: " 個数選択 " %>
+          <%= f.submit 'カートに入れる' %>
+          <% end %>
+        </div>
+      <% else %>
+      <% end %>
 
     </div>
 

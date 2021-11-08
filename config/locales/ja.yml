@@ -12,4 +12,15 @@ ja:
         in_production: '製作中'
         delivery_preparation: '発送準備'
         delivered: '発送済み'
-        
+
+    order_detail:
+      making_status:
+        start_not_possible: '着手不可'
+        production_pending: '製作待ち'
+        in_production: '製作中'
+        production_complete: '製作'
+
+    customer:
+      is_active:
+        withdraw: '退会'
+        active: '有効'

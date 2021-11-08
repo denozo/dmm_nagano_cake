@@ -12,9 +12,9 @@ class Public::SessionsController < Devise::SessionsController
   # def create
   #   super
   # end
-  
+
   def after_sign_in_path_for(resource)
-    admin_root_path
+    root_path
   end
 
   # DELETE /resource/sign_out
@@ -22,7 +22,11 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # protected
+  protected
+  
+  # def reject_user
+  #   @customer = customer.find_by(name: [])
+  # end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_in_params

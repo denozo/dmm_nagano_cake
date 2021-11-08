@@ -1,33 +1,46 @@
-<h1><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</h1>
+<div class="container w-50">
+  <div class="row pt-3 pb-3">
+    <h4><span><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細</span></h1>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">会員ID</label>
+    <div class="col-md-10 p-2"><%= @customer.id %></div>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">氏名</label>
+    <div class="col-md-10 p-2"><%= @customer.last_name %><%= @customer.first_name %></div>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">フリガナ</label>
+    <div class="col-md-10 p-2"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></div>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">郵便番号</label>
+    <div class="col-md-10 p-2"><%= @customer.postal_code %></div>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">住所</label>
+    <div class="col-md-10 p-2"><%= @customer.address %></div>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">電話番号</label>
+    <div class="col-md-10 p-2"><%= @customer.telephone_number %></div>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">メールアドレス</label>
+    <div class="col-md-10 p-2"><%= @customer.email %></div>
+  </div>
+  
+  <div class="row">
+    <label class="col-md-2 p-2">会員ステータス</label>
+    <div class="col-md-10 p-2"><%= @customer.is_active_i18n %></div>
+  </div>
 
-<div class="customer-detail">
-  <%= @customer.id %>
-</div>
-
-<div class="customer-detail">
-  <%= @customer.last_name %><%= @customer.first_name %>
-</div>
-
-<div class="customer-detail">
-<%= @customer.last_name_kana %><%= @customer.first_name_kana %>
-</div>
-
-<div class="customer-detail">
-  <%= @customer.postal_code %>
-</div>
-
-<div class="customer-detail">
-  <%= @customer.address %>
-</div>
-
-<div class="customer-detail">
-  <%= @customer.telephone_number %>
-</div>
-
-<div class="customer-detail">
-  <%= @customer.email %>
-</div>
-
-<div class="customer-detail">
-  <%= @customer.is_active %>
 </div>
