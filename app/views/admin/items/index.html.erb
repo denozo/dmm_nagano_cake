@@ -24,7 +24,7 @@
         <tr>
           <td><%= item.id %></td>
           <td><%= link_to item.name, admin_item_path(item.id), class: 'item-link' %></td>
-          <td><%= item.price %>円</td>
+          <td><%= item.price.to_s(:delimited) %></td>
           <td><%= item.genre.name %></td>
           <td><%= item.is_active %></td>
         </tr>
@@ -33,3 +33,6 @@
     </table>
   </div>
 </div>
+
+
+

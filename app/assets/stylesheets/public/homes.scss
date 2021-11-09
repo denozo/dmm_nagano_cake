@@ -1,3 +1,7 @@
-// Place all the styles related to the public/homes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+//TOP画面のメッセージレイアウト調整
+.info-message {
+  border: 2px solid #70372c;
+  // margin: 50px auto;
+  padding: 20px;
+  width: 500px;
+}

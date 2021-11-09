@@ -5,18 +5,14 @@
     </div>
   </div>
   
-  <div class="row">
-    <div class="col">
-      <p>登録情報</p>
-    </div>
-    <div class="col">
-     <%= link_to "編集する", edit_customers_path, class: 'fas' %>
-    </div>
+  <div class="row m-3">
+    <p class="font-weight-bold mr-5 w-25">登録情報</p>
+    <%= link_to "編集する", edit_customers_path, class: 'btn btn-success' %>
   </div>
   
   <div class="row">
     <div class="col">
-      <table>
+      <table class="table">
         <tr>
           <th>氏名</th>
           <td><%= @customer.last_name %><%= @customer.first_name %></td>
@@ -45,22 +41,14 @@
     </div>
   </div>
     
-  <div class="row">
-    <div class="col">
-      <p>配送先</p>
-    </div>
-    <div class="col">
-     <%= link_to "一覧を見る", addresses_path, class: 'fas' %>
-    </div>
+  <div class="row m-3">
+    <p class="font-weight-bold mr-5 w-25">配送先</p>
+    <%= link_to "一覧を見る", addresses_path, class: 'btn btn-primary' %>
   </div>
 
-  <div class="row">
-    <div class="col">
-      <p>注文履歴</p>
-    </div>
-    <div class="col">
-     <%= link_to "一覧を見る", orders_path, class: 'fas' %>
-    </div>
+  <div class="row m-3">
+    <p class="font-weight-bold mr-5 w-25">注文履歴</p>
+    <%= link_to "一覧を見る", orders_path, class: 'btn btn-primary' %>
   </div>
 
 </div>

@@ -1,55 +1,71 @@
-<div class="container">
-  <div class="row justify-content-light">
+<div class="container w-50">
+  <div class="row pt-3 pb-3">
     <h4><span>　商品新規登録　</span></h4>
   </div>
-  
+
+  <!--未入力の場合のエラーメッセージ表示-->
   <% if @item.errors.any? %>
     <%= @item.errors.count %>件の未入力があります!
   <% end %>
 
-  <div class="row justify-content-center">
+
     <%= form_with model: @item, url:"/admin/items", local:true do |f| %>
-    
-      <div class="row form-group">
-        <label for="" class="col-sm-5 control-label">商品画像</label>
-        <%= f.attachment_field :image, class: 'item_image' %>
-      </div>
-    
-      <div class="row form-group">
-        <label for="item_name" class="col-sm-5 control-label">商品名</label>
-        <%= f.text_field :name, class: 'item_name col-sm-5' %>
-      </div>
-      
-      <div class="row form-group">
-        <label for="item_introduction" class="col-md-5 control-label">商品説明</label>
-        <div>
-        <%= f.text_area :introduction, class: "item_introduction col-md-7" %>
+
+      <div class="row justify-content-center">
+        <%= f.label "商品画像", class: 'col-md-2 p-2' %>
+        <div class="col-md-3 mr-3 formFileMultiple">
+          <%= f.attachment_field :image %>
         </div>
       </div>
-    
-      <div class="row form-group">
-        <label for="item_genre" class="col-sm-5 control-label">ジャンル</label>
-        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: " -- 選択してください -- ", class: "item_genre" %>
+
+      <div class="row justify-content-center">
+        <%= f.label "商品名", class: 'col-md-2 p-2' %>
+        <div class="col-md-3 mr-3">
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <%= f.label "商品説明", class: 'col-md-2 p-2' %>
+        <div class="col-md-3 mr-3">
+        <%= f.text_area :introduction, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <%= f.label "ジャンル", class: 'col-md-2 p-2' %>
+        <div class="col-md-3 mr-3">
+        <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: " -- 選択してください -- ", class: 'form-select' %>
+        </div>
       </div>
         <!--保存先のカラム名, テーブル名, DBに保存したいカラム名, 選択肢にするカラム名-->
-      
-      <div class="row form-group">
-        <label for="item_price" class="col-sm-5 control-label">税抜価格</label>
-        <%= f.number_field :price, class: "item_price col-sm-5" %>円
+
+      <div class="row justify-content-center">
+        <%= f.label "税抜価格", class: 'col-md-2 p-2' %>
+        <div class="col-md-3 mr-3">
+          <%= f.number_field :price, class: 'form-control' %>
+        </div>
+        <div>円</div>
       </div>
-    
-      <div class="row form-group">
-        <label for="item_is_active" class="col-sm-5 control-label">販売ステータス</label>
-        <%= f.radio_button :is_active, "販売中", class: "item_is_active" %>
-        <%= f.label :is_active, "販売中", class: "item_is_active" %>
-    
-        <%= f.radio_button :is_active, "販売停止中", class: "item_is_active" %>
-        <%= f.label :is_active, "販売停止中", class: "item_is_active" %>
+
+      <div class="row justify-content-center">
+        <%= f.label "販売ステータス", class: 'col-md-2 p-2' %>
+        <div class="col-2">
+          <%= f.radio_button :is_active, "販売中", class: "item_is_active" %>
+          <%= f.label :is_active, "販売中", class: "item_is_active" %>
+        </div>
+        <div class="col-3">
+          <%= f.radio_button :is_active, "販売停止中", class: "item_is_active" %>
+          <%= f.label :is_active, "販売停止中", class: "item_is_active" %>
+        </div>
       </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-1"></div>
+        <%= f.submit '新規登録',class: 'btn btn-success' %>
+
+    </div>
     
-    <div class="row justify-content-center">    
-      <%= f.submit '新規登録' %>
-    </div>   
     <% end %>
-  </div>
+
 </div>

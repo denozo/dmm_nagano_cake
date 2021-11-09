@@ -1,25 +1,31 @@
-<div class="container-md">
-  
-  <div class="row">
-    <h3>管理者ログイン</h3>
+<div class="container w-50">
+  <div class="row pt-3 pb-3">
+    <h4><span> 管理者ログイン </span></h4>
   </div>
-  
-    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <div class="row-auto">
-        <label>メールアドレス</label>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= form_with model: @admin, url: admin_session_path, local: true do |f| %>
+
+    <div class="row justify-content-center">
+      <%= f.label "メールアドレス", class: 'col-md-2 p-2' %>
+      <div class="col-md-5">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      </div>
     </div>
 
-    <div class="row-auto">
-      <label>パスワード</label>
-      <%= f.password_field :password, autocomplete: "current-password" %>
+    <div class="row justify-content-center">
+      <%= f.label "パスワード", class: 'col-md-2 p-2' %>
+      <div class="col-md-5">
+        <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
+      </div>
     </div>
-    
-    <div class="actions btn btn-primary">
-      <%= f.submit "Log in" %>
+
+    <div class="row justify-content-center">
+      <div class="col-md-2 p-2"></div>
+      <div class="col-md-5 ml-3">
+        <%= f.submit "　ログイン　", class: 'btn btn-primary' %>
+      </div>
     </div>
-    
+
     <% end %>
-    
+
 </div>

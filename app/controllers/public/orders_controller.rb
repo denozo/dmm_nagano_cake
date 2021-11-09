@@ -4,7 +4,7 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
 
   def new
-    @addresses = Address.all
+    @addresses = Address.where(customer_id: current_customer.id)
     @customer = current_customer
     @order = Order.new
 
@@ -74,7 +74,6 @@ class Public::OrdersController < ApplicationController
         order_details.order_id = order.id
         order_details.price = cart_item.subtotal
         order_details.amount = cart_item.amount
-        # order_details.making_status = "0"
         order_details.save
       end
 

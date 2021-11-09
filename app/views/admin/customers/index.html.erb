@@ -20,7 +20,7 @@
         <% @customers.each do |customer| %>
         <tr>
           <td><%= customer.id %></td>
-          <td><%= link_to customer.last_name + customer.first_name, edit_admin_customer_path(customer.id), class: 'item-link' %></td>
+          <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer.id), class: 'item-link' %></td>
           <td><%= customer.email %></td>
           <td><%= customer.is_active_i18n %></td>
         </tr>
