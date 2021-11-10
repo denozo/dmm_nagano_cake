@@ -1,33 +1,44 @@
-<div class="container p-5">
+<div class="container w-50">
+  <!--コンテンツ-->
   <div class="row">
-    <%= attachment_image_tag @item, :image, :fill, 200, 200 %>
-
-    <div class="col">
-
-      <div class="row">
-        <%= @item.name %>
-      </div>
-      <div class="row">
-        <%= @item.introduction %>
-      </div>
-      <div class="row">
-        ￥<%= @item.with_tax_price %>（税込）
-      </div>
-
-      <!--以下ログイン時のみ表示-->
-      <% if customer_signed_in? %>
-        <div class="row">
-          <%= form_with model: @cart_item, url:"/cart_items", loacl:true do |f| %>
-          <%= f.hidden_field :item_id, value: @item.id %>
-          <%= f.hidden_field :customer_id, value: @customer.id %>
-          <%= f.select :amount, *[1..10],include_blank: " 個数選択 " %>
-          <%= f.submit 'カートに入れる' %>
-          <% end %>
-        </div>
-      <% else %>
-      <% end %>
-
+    <!--item写真掲載-->
+    <div class="col-md-5">
+      <%= attachment_image_tag @item, :image, :fill, 250, 200 %>
     </div>
 
+    <!--item説明-->    
+    <div class="col-md-7">
+      <!--商品名-->
+      <div class="row p-3 font-weight-bold", style="font-size: 25px" >
+        <%= @item.name %>
+      </div>
+      <!--商品説明文-->
+      <div class="row p-3">
+        <%= @item.introduction %>
+      </div>
+      <!--単価-->
+      <div class="row p-3 font-weight-bold">
+        ￥<%= @item.with_tax_price %>（税込）
+      </div>
+      
+      <!--ここから下はログイン時のみ表示-->
+      <div class="row p-3">
+        <% if customer_signed_in? %>
+          <!--個数・カートボタン-->
+            <%= form_with model: @cart_item, url:"/cart_items", loacl:true do |f| %>
+            <!--非表示-->
+            <%= f.hidden_field :item_id, value: @item.id %>
+            <%= f.hidden_field :customer_id, value: @customer.id %>
+            <!--個数-->
+            <%= f.select :amount, *[1..10],include_blank: " 個数選択 ", class: 'form-select m-3' %>
+            <!--カートボタン-->
+            <%= f.submit 'カートに入れる', class: 'btn btn-primary m-3' %>
+            <% end %>
+        <% else %>
+        <% end %>
+      </div>
+    
+    </div>
+    
   </div>
 </div>
