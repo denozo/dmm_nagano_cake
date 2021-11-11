@@ -18,7 +18,7 @@
       </div>
       <!--単価-->
       <div class="row p-3 font-weight-bold">
-        ￥<%= @item.with_tax_price %>（税込）
+        ￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）
       </div>
       
       <!--ここから下はログイン時のみ表示-->

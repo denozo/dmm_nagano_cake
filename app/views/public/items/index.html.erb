@@ -1,7 +1,7 @@
 <div class="container">
 
   <div class="row">
-    <h4><span>　商品一覧　</span></h4>
+    <h4><span>　商品一覧　</span></h4><span>(全<%= @itemscount %>件)</span>
   </div>
 
   <div class="row p-5">
@@ -16,13 +16,13 @@
         <%= item.name %>
       </div>
       <div class="items">
-        ￥<%= item.with_tax_price %>
+        ￥<%= item.with_tax_price.to_s(:delimited) %>
       </div>
     </div>
     <% end %>
   </div>
-  
-  <div class="row">
+
+  <div class="row justify-content-center">
     <%= paginate(@items) %>
   </div>
 

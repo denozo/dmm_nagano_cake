@@ -5,25 +5,44 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items
+
+    #合計金額の計算
     @sum = 0
+    @cart_items.each do |cart_item|
+      @sum += cart_item.subtotal
+    end
+
   end
 
   def update
     @cart_items = CartItem.find(params[:id])
-    @cart_items.update(amount: params[:amount])
-    redirect_to cart_items_path
+
+    if @cart_items.update(amount: params[:amount])
+      flash[:notice] = "商品の個数を変更しました！"
+      redirect_to cart_items_path
+    else
+      render cart_item_path
+    end
   end
 
   def destroy
     cart_item = CartItem.find(params[:id])
-    cart_item.destroy
-    redirect_to cart_items_path
+
+    if cart_item.destroy
+      flash[:notice] = "商品を削除しました！"
+      redirect_to cart_items_path
+    end
   end
 
   def destroyall
     cart_items = current_customer.cart_items
-    cart_items.destroy_all
-    redirect_to cart_items_path
+
+    #ここに商品が既に空ですを機能としてのせたい
+
+    if cart_items.destroy_all
+      flash[:notice] = "カートを空にしました！"
+      redirect_to cart_items_path
+    end
   end
 
   def create

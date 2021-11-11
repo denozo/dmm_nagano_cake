@@ -2,6 +2,10 @@ class Public::ItemsController < ApplicationController
 
   def index
     @items = Item.page(params[:page]).per(8).reverse_order
+    
+    #商品一覧に表示する商品の件数を計算
+    @itemscount = @items.count
+    
     #会員には販売停止中のitemは非表示にする。
     @items = @items.where.not(is_active: '販売停止中')
   end

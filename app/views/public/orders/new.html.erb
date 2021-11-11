@@ -1,10 +1,18 @@
+<div class="container">
+  
 　<div class="row">
     <h4><span>　注文情報入力　</span></h4>
   </div>
 
+  <div class="row group" style="font-size: 20px; color: red;">
+    <% if @order.errors.any? %>
+      <%= @order.errors.count %>件の未入力があります!
+    <% end %>
+  </div>
+
   <%= form_with model: @order, url: confirm_orders_path, local:true do |f| %>
 
-    <label>支払方法</label>
+    <%= f.label :payment_method, "支払方法", class: 'control-label' %>
     <div class="">
       <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
       <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
@@ -14,7 +22,7 @@
       <%= f.label :payment_method, Order.payment_methods_i18n[:transfer] %>
     </div>
 
-    <label>お届け先</label>
+    <%= f.label :select_address, "お届け先", class: 'control-label' %>
     <div class="">
       <%= f.radio_button :select_address, 1 %>
       <%= f.label :select_address_1, "自身の住所" %>
@@ -30,20 +38,40 @@
     <div class="">
       <%= f.radio_button :select_address, 3 %>
       <%= f.label :select_address_3, "新しいお届け先" %>
-
-      <div class="">
-
-        <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
-        <%= f.text_field :postal_code %>
-
-        <%= f.label :address, "住所" %>
-        <%= f.text_field :address %>
-
-        <%= f.label :name, "宛名" %>
-        <%= f.text_field :name %>
-
     </div>
 
-    <%= submit_tag '確認画面へ進む' %>
+    <!--こっから上直す-->
+
+    <div class="form-horizontal" role="form">
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :postal_code, "郵便番号（ハイフンなし）", class: 'control-label' %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.text_field :postal_code, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :address, "住所", class: 'control-label' %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.text_field :address, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-sm-3">
+          <%= f.label :name, "宛名", class: 'control-label' %>
+        </div>
+        <div class="col-sm-3">
+          <%= f.text_field :name, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+
+    <%= submit_tag '確認画面へ進む',class: 'btn btn-success' %>
 
   <% end %>
+   
+  </div>
+</div>
