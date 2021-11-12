@@ -24,3 +24,8 @@ ja:
       is_active:
         withdraw: '退会'
         active: '有効'
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      long: '%Y/%m/%d'

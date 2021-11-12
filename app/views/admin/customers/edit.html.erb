@@ -28,7 +28,7 @@
     <div class="row">
       <%= f.label :postal_cod, "郵便番号", class: 'col-md-2 p-2' %>
       <div class="col-md-3 mr-3">
-        <%= f.number_field :postal_code, autofocus: true, autocomplete: "postal_code", class: 'form-control' %>
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: 'form-control' %>
       </div>
     </div>
   
@@ -42,7 +42,7 @@
     <div class="row">
       <%= f.label :telephone_number, "電話番号", class: 'col-md-2 p-2' %>
       <div class="col-md-3">
-        <%= f.number_field :telephone_number, autofocus: true, autocomplete: "telephone", class: 'form-control' %>
+        <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone", class: 'form-control' %>
       </div>
     </div>
     

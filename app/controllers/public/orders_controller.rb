@@ -43,18 +43,18 @@ class Public::OrdersController < ApplicationController
 
     end
 
-  #カート内の値を取得
+    #カート内の値を取得
 
     @cart_items = current_customer.cart_items
 
-  #商品合計の計算
+    #商品合計の計算
     @sum = 0
 
     @cart_items.each do |cart_item|
       @sum += cart_item.subtotal
     end
 
-  #請求金額の計算(商品合計＋送料)
+    #請求金額の計算(商品合計＋送料)
 
     @total_payment = @sum + 800
     @order.total_payment = @total_payment.to_i
@@ -92,25 +92,24 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    #whereメソッドでログインユーザのデータを取り出す
+    #whereメソッドでログインユーザのデータだけを取得
     @orders = Order.where(customer_id: current_customer.id)
-
   end
 
   def show
     @order = Order.find(params[:id])
-    @order_details = OrderDetail.where(order_id: @order.id)
+    @order_detail = OrderDetail.where(order_id: @order.id)
     @item = Item.all
-    
+
     #商品合計の計算
 
     @sum = 0
 
-    @order_details.each do |order_detail|
+    @order_detail.each do |order_detail|
       @sum += order_detail.subtotal
-    end    
-    
-    
+    end
+
+
     #商品合計はどこで計算させるのか確認
   end
 

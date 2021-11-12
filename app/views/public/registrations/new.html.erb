@@ -6,7 +6,12 @@
 
   <div class="row group" style="font-size: 20px; color: red;">
     <% if @customer.errors.any? %>
-      <%= @customer.errors.count %>件の未入力があります!
+      <%= @customer.errors.count %>件のエラーがあります!
+      <ul>
+        <%@customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
   </div>
 
@@ -63,7 +68,7 @@
           <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: 'control-label' %>
         </div>
         <div class="col-sm-2">
-          <%= f.number_field :postal_code, autofocus: true, autocomplete: "postal_code", class: 'form-control' %>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class: 'form-control' %>
         </div>
       </div>
 
@@ -81,7 +86,7 @@
           <%= f.label :telephone_number, "電話番号(ハイフンなし)", class: 'control-label' %>
         </div>
         <div class="col-sm-2">
-          <%= f.number_field :telephone_number, autofocus: true, autocomplete: "telephone", class: 'form-control' %>
+          <%= f.text_field :telephone_number, autofocus: true, autocomplete: "telephone", class: 'form-control' %>
         </div>
       </div>
 
