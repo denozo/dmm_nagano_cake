@@ -1,7 +1,7 @@
-<div class="container w-50">
-  
+<div class="container">
+
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <h4><span>　注文履歴　</span></h4>
     </div>
   </div>
@@ -10,23 +10,28 @@
     <table class="table">
       <thead>
         <tr class="table-light">
-          <th class="col-3">購入日時</th>
-          <th class="col-2">購入者</th>
-          <th class="col-1">購入個数</th>
-          <th class="col-2">注文ステータス</th>
+          <th class="col-md-3">購入日時</th>
+          <th class="col-md-2">購入者</th>
+          <th class="col-md-1">購入個数</th>
+          <th class="col-md-2">注文ステータス</th>
         </tr>
       </thead>
       <tbody  class="table-hover">
         <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.created_at, admin_order_path(order) %></td>
+          <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M"), admin_order_path(order) %></td>
           <td><%= order.name %></td>
-          <td>個</td>
+          <!--sumメソッドで個数合計を計算-->
+          <td><%= order.order_details.sum(:amount) %></td>
           <td><%= order.order_status_i18n %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+  
+  <div class="row justify-content-center">
+    <%= paginate(@orders) %>
   </div>
   
 </div>
