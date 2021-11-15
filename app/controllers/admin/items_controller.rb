@@ -4,7 +4,7 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @items = Item.page(params[:page]).per(10)
+    @items = Item.page(params[:page]).per(10).search(params[:search])
   end
 
   def new
@@ -18,7 +18,6 @@ class Admin::ItemsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show

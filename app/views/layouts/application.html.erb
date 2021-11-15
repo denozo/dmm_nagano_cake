@@ -10,20 +10,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
-  
+
   <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="/"><span>ながのCAKE</span></a>
-        
           <!--ログイン時に会員名を表示-->
-          <div class="row p-3">
+          <div class="p-3">
             <% if customer_signed_in? %>
             <p>ようこそ！<%= current_customer.last_name + "さん" %></p>
             <% else %>
             <% end %>
           </div>
-  
+
           <ul class="navbar-nav">
             <% if admin_signed_in? %>
               <li class="nav-item">
@@ -41,7 +40,7 @@
               <li class="nav-item">
                 <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
               </li>
-            
+
             <% elsif customer_signed_in? %>
               <li class="nav-item">
                 <%= link_to "マイページ", customers_path, class: 'btn btn-outline-secondary' %>
@@ -58,10 +57,10 @@
             <% else %>
               <li class="nav-item">
                 <%= link_to "About", home_about_path, class: 'btn btn-outline-secondary' %>
-              </li>    
+              </li>
              <li class="nav-item">
                 <%= link_to "商品一覧", items_path, class: 'btn btn-outline-secondary' %>
-              </li>    
+              </li>
               <li class="nav-item">
                 <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary' %>
               </li>
@@ -71,8 +70,14 @@
             <% end %>
           </ul>
       </div>
+    </div>
+    <div class="row justify-content-end">
+      <%= form_tag(admin_items_path,:method => 'get') do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag 'Search', :name => nil %>
+      <% end %>
+    </div>
     </nav>
-  
   </header>
     <%= yield %>
 </html>

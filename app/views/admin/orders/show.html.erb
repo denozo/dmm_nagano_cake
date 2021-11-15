@@ -13,7 +13,7 @@
 
   <div class="row">
     <label class="col-md-2 p-2">注文日</label>
-    <div class="col-md-10 p-2"><%= @order.created_at %></div>
+    <div class="col-md-10 p-2"><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></div>
   </div>
 
   <div class="row">
@@ -69,7 +69,7 @@
     <div class="col-md-4">
       <div class="row">
         <label class="col-md-6 p-2">商品合計</label>
-        <div class="col-md-6 p-2"><%= @sum.to_s + "円" %></div>
+        <div class="col-md-6 p-2"><%= @sum.to_s(:delimited) + "円" %></div>
       </div>
       <div class="row">
         <label class="col-md-6 p-2">送料</label>

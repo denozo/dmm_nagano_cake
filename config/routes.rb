@@ -4,7 +4,11 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'homes#top'
     resources :genres, only:[:index, :create, :edit, :update]
-    resources :items, only:[:index, :new, :create, :show, :edit, :update]
+    resources :items, only:[:index, :new, :create, :show, :edit, :update]do
+      collection do
+        get 'search'
+      end
+    end
     resources :customers, only:[:index, :show, :edit, :update]
     resources :orders, only:[:show, :update]
     resources :order_details, only:[:update]
@@ -18,7 +22,11 @@ Rails.application.routes.draw do
  #会員のルート設定
 
   scope module: :public do
-    resources :items, only:[:index, :show]
+    resources :items, only:[:index, :show] do
+      collection do
+        get 'search'
+      end
+    end
     resource :customers, only:[:index, :edit, :update, :show] do
       collection do
         get 'unsubscribe'
