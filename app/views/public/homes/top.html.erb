@@ -1,5 +1,7 @@
-<div class="container-md">
-
+<div class="container">
+  <div class="col-md-2 sidebar">
+    <%= render "public/items/genre" %>
+  </div>
   <div class="flex-row justify-content-center mx-auto info-message">
       ようこそながのCAKEへ！<br>
       このサイトは、ケーキ販売のECサイトになります。<br>
@@ -10,7 +12,7 @@
   <div class="row">
     <h4>新着商品</h4>
   </div>
-  
+
   <div class="row">
     <% @items.each do |item| %>
       <div class="col-3">
