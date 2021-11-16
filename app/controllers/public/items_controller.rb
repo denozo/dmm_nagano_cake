@@ -1,8 +1,8 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.page(params[:page]).per(8).reverse_order
-    
+    @items = Item.page(params[:page]).per(8).reverse_order.search(params[:search])
+    @genres = Genre.all
     #商品一覧に表示する商品の件数を計算
     @itemscount = @items.count
     
@@ -15,6 +15,8 @@ class Public::ItemsController < ApplicationController
     @customer = current_customer
     @cart_item = CartItem.new
   end
+
+
 
   private
 

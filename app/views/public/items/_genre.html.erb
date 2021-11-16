@@ -1,0 +1,8 @@
+<ul>
+  <% @genres.each do |genre| %>
+  <li>
+    <!--()内に記述した内容でパラメータを持たせて送る-->
+    <%= link_to genre.name, items_path(:search => genre.id) %>
+  </li>
+  <% end %>
+</ul>
