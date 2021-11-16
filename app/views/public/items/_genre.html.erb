@@ -1,8 +1,15 @@
-<ul>
-  <% @genres.each do |genre| %>
-  <li>
-    <!--()内に記述した内容でパラメータを持たせて送る-->
-    <%= link_to genre.name, items_path(:search => genre.id) %>
-  </li>
-  <% end %>
-</ul>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @genres.each do |genre| %>
+    <tr>
+      <!--()内に記述した内容でパラメータを持たせて送る-->
+      <td><%= link_to genre.name, items_path(:search => genre.id) %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

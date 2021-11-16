@@ -1,31 +1,32 @@
 <div class="container">
-
-<%= render 'genre' %>
-
   <div class="row">
-    <h4><span>　商品一覧　</span></h4><span>(全<%= @itemscount %>件)</span>
-  </div>
-
-  <div class="row p-5">
-    <% @items.each do |item| %>
-    <div class="col-3">
-      <div class="items m-3">
-        <%= link_to item_path(item.id) do %>
-        <%= attachment_image_tag item, :image, :fill, 100, 100 %>
+    <div class="col-md-2 sidebar">
+      <%= render 'genre' %>
+    </div>
+    <div class="col-md-10">
+      <div class="row">
+        <h4><span>　商品一覧　</span></h4><span>(全<%= @itemscount %>件)</span>
+      </div>
+      <div class="row p-5">
+        <% @items.each do |item| %>
+        <div class="col-3">
+          <div class="items m-3">
+            <%= link_to item_path(item.id) do %>
+            <%= attachment_image_tag item, :image, :fill, 100, 100 %>
+            <% end %>
+          </div>
+          <div class="items">
+            <%= item.name %>
+          </div>
+          <div class="items">
+            ￥<%= item.with_tax_price.to_s(:delimited) %>
+          </div>
+        </div>
         <% end %>
       </div>
-      <div class="items">
-        <%= item.name %>
-      </div>
-      <div class="items">
-        ￥<%= item.with_tax_price.to_s(:delimited) %>
+      <div class="row justify-content-center">
+        <%= paginate(@items) %>
       </div>
     </div>
-    <% end %>
   </div>
-
-  <div class="row justify-content-center">
-    <%= paginate(@items) %>
-  </div>
-
 </div>

@@ -11,79 +11,92 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
 
-  <header>
-    <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/"><span>ながのCAKE</span></a>
+  <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <div class="col">
+          <!--Logo画像配置-->
+          <a class="navbar-brand" href="/"><img src="/assets/nagano_cake_logo" alt="ながのCAKE" class="mt-2"></a>
           <!--ログイン時に会員名を表示-->
-          <div class="p-3">
+          <div>
             <% if customer_signed_in? %>
             <p>ようこそ！<%= current_customer.last_name + "さん" %></p>
             <% else %>
             <% end %>
           </div>
-
-          <ul class="navbar-nav">
+        </div>
+        <!--ここからナビ用のリンクの記述-->
+        <!--ハンバーガーメニュー-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mt-4" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
-                <%= link_to "商品一覧", admin_items_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "商品一覧", admin_items_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-outline-secondary'  %>
+                <%= link_to "会員一覧", admin_customers_path, class: 'btn btn-outline-secondary nav-link text-dark'  %>
               </li>
               <li class="nav-item">
-                <%= link_to "注文履歴一覧", admin_root_path, class: 'btn btn-outline-secondary'  %>
+                <%= link_to "注文履歴一覧", admin_root_path, class: 'btn btn-outline-secondary nav-link text-dark'  %>
               </li>
               <li class="nav-item">
-                <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-outline-secondary'  %>
+                <%= link_to "ジャンル一覧", admin_genres_path, class: 'btn btn-outline-secondary nav-link text-dark'  %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
-
             <% elsif customer_signed_in? %>
               <li class="nav-item">
-                <%= link_to "マイページ", customers_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "マイページ", customers_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "商品一覧", items_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "商品一覧", items_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "カート", cart_items_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "カート", cart_items_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary' %>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to "About", home_about_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "About", home_about_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
              <li class="nav-item">
-                <%= link_to "商品一覧", items_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "商品一覧", items_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-outline-secondary' %>
+                <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-outline-secondary nav-link text-dark' %>
               </li>
             <% end %>
           </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row justify-content-end input-group">
+        <% if admin_signed_in? %>
+          <!--adminでログインしているときの検索窓-->
+          <%= form_tag(admin_items_path,:method => 'get') do %>
+            <%= text_field_tag :search %>
+            <%= submit_tag 'Search', :name => nil, class: 'mb-3' %>
+          <% end %>
+        <% else %>
+          <!--ログイン前の検索窓-->
+          <%= form_tag(items_path,:method => 'get') do %>
+            <%= text_field_tag :search %>
+            <%= submit_tag 'Search', :name => nil, class: 'mb-3' %>
+           <% end %>
+        <% end %>
       </div>
     </div>
-    <div class="row justify-content-end">
-      <!--adminでログインしているときの検索窓-->
-      <%= form_tag(admin_items_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag 'Search', :name => nil %>
-      <% end %>
-      <!--会員でログインしているときの検索窓-->
-      <%= form_tag(items_path,:method => 'get') do %>
-        <%= text_field_tag :search %>
-        <%= submit_tag 'Search', :name => nil %>
-      <% end %>
-    </div>
-    </nav>
   </header>
-    <%= yield %>
+
+  <%= yield %>
 </html>
