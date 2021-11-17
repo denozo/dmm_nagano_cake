@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-md-9">
-      <h4><span>　注文履歴　</span></h4>
+      <h4><span>　注文履歴一覧　</span></h4>
     </div>
   </div>
 
@@ -10,16 +10,16 @@
     <table class="table">
       <thead>
         <tr class="table-light">
-          <th class="col-md-3">購入日時</th>
-          <th class="col-md-2">購入者</th>
-          <th class="col-md-1">購入個数</th>
+          <th class="col-md-2">購入日時</th>
+          <th class="col-md-3">購入者</th>
+          <th class="col-md-2">購入個数</th>
           <th class="col-md-2">注文ステータス</th>
         </tr>
       </thead>
-      <tbody  class="table-hover">
+      <tbody  class="table">
         <% @orders.each do |order| %>
         <tr>
-          <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M"), admin_order_path(order) %></td>
+          <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M"), admin_order_path(order), class: "text-dark link_text" %></td>
           <td><%= order.name %></td>
           <!--sumメソッドで個数合計を計算-->
           <td><%= order.order_details.sum(:amount) %></td>
@@ -29,9 +29,9 @@
       </tbody>
     </table>
   </div>
-  
+
   <div class="row justify-content-center">
     <%= paginate(@orders) %>
   </div>
-  
+
 </div>

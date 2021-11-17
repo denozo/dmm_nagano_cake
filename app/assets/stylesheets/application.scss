@@ -24,7 +24,6 @@
 }
 
 
-
 .nav-item {
   margin: 20px 20px;
 }
@@ -45,8 +44,8 @@ h5 > span,{
 }
 
 .item-link:hover {
-  color: #212529;
-  text-decoration:underline;
+  color:  #212529;
+  text-decoration: underline;
 }
 
 
@@ -55,6 +54,21 @@ h5 > span,{
   border: none;
 }
 
+//カート内が空の場合ボタン非活性にする
 a.disabled{
     pointer-events: none;
+}
+
+
+//注文履歴一覧の購入日時のリンクアンダーライン
+.link_text {
+  text-decoration:underline;
+}
+
+label {
+  font-weight: bold;
+}
+
+.activecolor {
+  color: #green;
 }

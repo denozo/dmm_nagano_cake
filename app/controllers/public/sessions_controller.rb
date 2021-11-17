@@ -23,7 +23,7 @@ class Public::SessionsController < Devise::SessionsController
   # end
 
   protected
-  
+
   # def reject_user
   #   @customer = customer.find_by(name: [])
   # end
@@ -32,4 +32,17 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  private
+
+    #退会会員はログインできないように制御
+    def after_sign_in_path_for(recource)
+      if resource.is_active == "withdraw"
+        sign_out recource
+        root_path
+      else
+        items_path
+      end
+    end
+
 end

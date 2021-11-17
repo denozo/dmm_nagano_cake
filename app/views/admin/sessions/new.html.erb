@@ -1,5 +1,5 @@
-<div class="container">
-  <div class="row pt-3 pb-3">
+<div class="container w-50">
+  <div class="row">
     <h4><span> 管理者ログイン </span></h4>
   </div>
 
@@ -10,8 +10,8 @@
       <div class="col-md-3">
         <%= f.label "メールアドレス", class: 'control-label' %>
       </div>
-      <div class="col-md-4">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      <div class="col-md-7">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", :placeholder => "sample@example.com", class: 'form-control' %>
       </div>
     </div>
 
@@ -19,7 +19,7 @@
       <div class="col-md-3">
         <%= f.label "パスワード", class: 'control-label' %>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-5">
         <%= f.password_field :password, autocomplete: "current-password", class: 'form-control' %>
       </div>
     </div>

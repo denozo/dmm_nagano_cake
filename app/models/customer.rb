@@ -25,9 +25,5 @@ class Customer < ApplicationRecord
     '〒' + postal_code + ' ' + address + ' ' + last_name + first_name
   end
 
-  #is_activeがfalseならtureを返す
-  # def active_for_authentication?
-  #   super && (is_active == true)
-  # end
 
 end
