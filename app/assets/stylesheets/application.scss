@@ -19,7 +19,9 @@
 @import 'font-awesome';
 
 
-
+.header {
+  margin-bottom: 50px;
+}
 
 
 
@@ -45,4 +47,14 @@ h5 > span,{
 .item-link:hover {
   color: #212529;
   text-decoration:underline;
+}
+
+
+//ジャンル検索テーブルの枠線を消す
+.table-bordered th, .table-bordered td {
+  border: none;
+}
+
+a.disabled{
+    pointer-events: none;
 }

@@ -11,26 +11,26 @@
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
   </head>
 
-  <header class="shadow-sm">
-    <nav class="navbar navbar-expand-lg navbar-light">
+  <header class=" header shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light p-0">
       <div class="container">
         <div class="col">
           <!--Logo画像配置-->
-          <a class="navbar-brand" href="/"><img src="/assets/nagano_cake_logo" alt="ながのCAKE" class="mt-2"></a>
+          <a class="navbar-brand" href="/"><img src="/assets/nagano_cake_logo" alt="ながのCAKE" class="p-3"></a>
           <!--ログイン時に会員名を表示-->
-          <div>
-            <% if customer_signed_in? %>
+        </div>
+        <div class="p-2 col-xs-5">
+          <% if customer_signed_in? %>
             <p>ようこそ！<%= current_customer.last_name + "さん" %></p>
-            <% else %>
-            <% end %>
-          </div>
+          <% else %>
+          <% end %>
         </div>
         <!--ここからナビ用のリンクの記述-->
         <!--ハンバーガーメニュー-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse mt-4" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
@@ -79,7 +79,8 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+
+    <div class="container d-flex">
       <div class="row justify-content-end input-group">
         <% if admin_signed_in? %>
           <!--adminでログインしているときの検索窓-->

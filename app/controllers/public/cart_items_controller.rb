@@ -12,6 +12,9 @@ class Public::CartItemsController < ApplicationController
       @sum += cart_item.subtotal
     end
 
+    #カート内に製品が入っているか確認。帰ってくる値がtureならview側でボタン非活性
+    @condition = true == @cart_items.blank?
+
   end
 
   def update

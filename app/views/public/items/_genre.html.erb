@@ -1,5 +1,5 @@
 <table class="table table-bordered">
-  <thead>
+  <thead class="border-top">
     <tr>
       <th>ジャンル検索</th>
     </tr>
@@ -8,7 +8,7 @@
     <% @genres.each do |genre| %>
     <tr>
       <!--()内に記述した内容でパラメータを持たせて送る-->
-      <td><%= link_to genre.name, items_path(:search => genre.id) %></td>
+      <td><%= link_to genre.name, items_path(:search => genre.id), class: "text-dark" %></td>
     </tr>
     <% end %>
   </tbody>

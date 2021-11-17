@@ -1,47 +1,58 @@
 <div class="container">
-  <div class="col-md-2 sidebar">
-    <%= render 'genre' %>
-  </div>>
-  <!--コンテンツ-->
-  <div class="row">
-    <!--item写真掲載-->
-    <div class="col-md-5">
-      <%= attachment_image_tag @item, :image, :fill, 250, 200 %>
+  <div class="row mx-auto">
+
+    <!--ジャンル検索サイドバー設置　④列をサイドバーに割り当て-->
+    <div class="col-xs-5 sidebar">
+      <%= render 'genre' %>
     </div>
 
-    <!--item説明-->    
-    <div class="col-md-7">
-      <!--商品名-->
-      <div class="row p-3 font-weight-bold", style="font-size: 25px" >
-        <%= @item.name %>
-      </div>
-      <!--商品説明文-->
-      <div class="row p-3">
-        <%= @item.introduction %>
-      </div>
-      <!--単価-->
-      <div class="row p-3 font-weight-bold">
-        ￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）
-      </div>
-      
-      <!--ここから下はログイン時のみ表示-->
-      <div class="row p-3">
-        <% if customer_signed_in? %>
-          <!--個数・カートボタン-->
-            <%= form_with model: @cart_item, url:"/cart_items", loacl:true do |f| %>
-            <!--非表示-->
-            <%= f.hidden_field :item_id, value: @item.id %>
-            <%= f.hidden_field :customer_id, value: @customer.id %>
-            <!--個数-->
-            <%= f.select :amount, *[1..10],include_blank: " 個数選択 ", class: 'form-select m-3' %>
-            <!--カートボタン-->
-            <%= f.submit 'カートに入れる', class: 'btn btn-primary m-3' %>
+    <!--メインコンテンツ-->
+    <div class="col ml-5">
+
+  　　<div class="row">
+
+        <!--商品の写真掲載-->
+        <div class="col-xs-4">
+          <%= attachment_image_tag @item, :image, :fill, 250, 200 %>
+        </div>
+
+        <!---商品の説明-->
+        <div class="ml-5">
+
+          <!--商品名-->
+          <div class="row font-weight-bold", style="font-size: 25px" >
+            <%= @item.name %>
+          </div>
+          <!--商品説明文-->
+          <div class="row p-3 col-md-8">
+            <%= @item.introduction %>
+          </div>
+          <!--単価-->
+          <div class="row p-3 font-weight-bold">
+            ￥<%= @item.with_tax_price.to_s(:delimited) %>（税込）
+          </div>
+
+          <!--ここから下はログイン時のみ表示-->
+          <div class="row p-3">
+            <% if customer_signed_in? %>
+              <!--個数・カートボタン-->
+                <%= form_with model: @cart_item, url:"/cart_items", loacl:true do |f| %>
+                <!--非表示-->
+                <%= f.hidden_field :item_id, value: @item.id %>
+                <%= f.hidden_field :customer_id, value: @customer.id %>
+                <!--個数-->
+                <%= f.select :amount, *[1..10],include_blank: " 個数選択 ", class: 'form-select m-3' %>
+                <!--カートボタン-->
+                <%= f.submit 'カートに入れる', class: 'btn btn-primary m-3' %>
+                <% end %>
+            <% else %>
             <% end %>
-        <% else %>
-        <% end %>
-      </div>
-    
+          </div>
+
+        </div>
+  　　</div>
+
     </div>
-    
+
   </div>
 </div>

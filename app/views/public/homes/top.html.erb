@@ -1,38 +1,52 @@
 <div class="container">
-  <div class="col-md-2 sidebar">
-    <%= render "public/items/genre" %>
-  </div>
-  <div class="flex-row justify-content-center mx-auto info-message">
-      ようこそながのCAKEへ！<br>
-      このサイトは、ケーキ販売のECサイトになります。<br>
-      会員ではない方も商品の閲覧はできますが、<br>
-      購入には会員登録が必要となります。<br>
-  </div>
+  <div class="row mx-auto">
 
-  <div class="row">
-    <h4>新着商品</h4>
-  </div>
+    <!--ジャンル検索サイドバー設置　④列をサイドバーに割り当て-->
+    <div class="col-xs-5 sidebar">
+      <%= render "public/items/genre" %>
+    </div>
 
-  <div class="row">
-    <% @items.each do |item| %>
-      <div class="col-3">
-        <%= link_to item_path(item.id) do %>
-        <div class="items m-3">
-          <%= attachment_image_tag item, :image, :fill, 100, 100, class: 'item-image' %>
-          <% end %>
-        </div>
-        <div class="items m-3">
-          <%= item.name %>
-        </div>
-        <div class="items m-3">
-          ￥<%= item.with_tax_price %>
-        </div>
+    <!--メインコンテンツ-->
+    <div class="col">
+
+      <!--TOPメッセージ-->
+      <div class="mx-auto m-5 info-message">
+        ようこそながのCAKEへ！<br>
+        このサイトは、ケーキ販売のECサイトになります。<br>
+        会員ではない方も商品の閲覧はできますが、<br>
+        購入には会員登録が必要となります。<br>
       </div>
-    <% end %>
-  </div>
 
-  <div class="row float-right">
-    <%= link_to "全ての商品を見る>", items_path %>
-  </div>
+      <!--新着情報の見出し-->
+      <div class="row ml-5">
+        <h4>新着商品</h4>
+      </div>
 
+      <!--新着商品の表示-->
+      <div class="row">
+        <% @items.each do |item| %>
+          <div class="mx-auto m-3">
+            <%= link_to item_path(item.id) do %>
+          <div class="items m-3">
+            <%= attachment_image_tag item, :image, :fill, 200, 150, class: 'item-image' %>
+            <% end %>
+          </div>
+          <div class="items m-3">
+            <%= item.name %>
+          </div>
+          <div class="items m-3">
+            ￥<%= item.with_tax_price %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+
+      <!--商品一覧ページへのリンク-->
+      <div class="row float-right">
+        <%= link_to "全ての商品を見る>", items_path %>
+      </div>
+
+    </div>
+
+  </div>
 </div>
