@@ -1,9 +1,10 @@
 <div class="container">
-
-  <div class="row pt-3 pb-3">
-    <h4><span>　商品新規登録　</span></h4>
+  <div class="row justify-content-center">
+    <div class="col-9 mb-3">
+      <span class="h4 bg-light">　商品新規登録　</span>
+    </div>
   </div>
-  
+
   <!--未入力の場合のエラーメッセージ表示-->
   <div class="row group" style="font-size: 20px; color: red;">
     <% if @item.errors.any? %>

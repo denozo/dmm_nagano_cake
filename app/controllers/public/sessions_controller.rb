@@ -39,7 +39,7 @@ class Public::SessionsController < Devise::SessionsController
     def after_sign_in_path_for(recource)
       if resource.is_active == "withdraw"
         sign_out recource
-        root_path
+         new_customer_session_path
       else
         items_path
       end

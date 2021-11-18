@@ -4,7 +4,9 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
+    
     @items = Item.page(params[:page]).per(10).search(params[:search])
+    
 
   end
 
@@ -22,6 +24,7 @@ class Admin::ItemsController < ApplicationController
   end
 
   def show
+    @caption = "商品詳細"
     @item = Item.find(params[:id])
     @genre = Genre.find(@item.genre_id)
   end
