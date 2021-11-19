@@ -5,10 +5,15 @@
     </div>
   </div>
 
-  <!--未入力の場合のエラーメッセージ表示-->
+  <!--バリデーションチェックの結果をエラーメッセージで表示-->
   <div class="row group" style="font-size: 20px; color: red;">
     <% if @item.errors.any? %>
-      <%= @item.errors.count %>件の未入力があります!
+      <%= @item.errors.count %>件のエラーがあります!
+      <ul>
+        <%@item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
   </div>
 

@@ -10,7 +10,10 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :image, presence: true
   validates :introduction, presence: true
+  validates :introduction, length: { maximum: 50}
   validates :price, presence: true
+  #数値のみというバリデーションを設定
+  validates :price, numericality: { only_integer: true}
 
   enum is_active: { 販売停止中: false, 販売中: true}
 

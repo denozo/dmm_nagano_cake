@@ -14,7 +14,9 @@ class Customer < ApplicationRecord
   validates :last_name_kana, presence: true
   validates :first_name_kana, presence: true
   validates :email, length: { maximum: 50}
-  validates :postal_code, presence: true
+  #郵便番号のバリデーション設定で正規表現を使用。スラッシュの間/この中に正規表現/
+  VALID_POSTAL_CODE_REGEX = /\A\d{3}[-]?\d{4}\Z/
+  validates :postal_code, presence: true, format: { with: VALID_POSTAL_CODE_REGEX }
   validates :address, presence: true
   validates :telephone_number, presence: true
 

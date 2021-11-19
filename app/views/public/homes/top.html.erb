@@ -1,8 +1,8 @@
 <div class="container">
-  <div class="row mx-auto">
+  <div class="row">
 
     <!--ジャンル検索サイドバー設置　④列をサイドバーに割り当て-->
-    <div class="col-xs-5 sidebar">
+    <div>
       <%= render "public/items/genre" %>
     </div>
 
@@ -27,17 +27,17 @@
         <% @items.each do |item| %>
           <div class="mx-auto m-3">
             <%= link_to item_path(item.id) do %>
-          <div class="items m-3">
-            <%= attachment_image_tag item, :image, :fill, 200, 150, class: 'item-image' %>
-            <% end %>
+            <div class="items m-3">
+              <%= attachment_image_tag item, :image, :fill, 200, 150, class: 'item-image' %>
+              <% end %>
+            </div>
+            <div class="items m-3">
+              <%= item.name %>
+            </div>
+            <div class="items m-3">
+              ￥<%= item.with_tax_price %>
+            </div>
           </div>
-          <div class="items m-3">
-            <%= item.name %>
-          </div>
-          <div class="items m-3">
-            ￥<%= item.with_tax_price %>
-          </div>
-        </div>
         <% end %>
       </div>
 
@@ -50,3 +50,5 @@
 
   </div>
 </div>
+
+<%= render '/layouts/footer' %>
