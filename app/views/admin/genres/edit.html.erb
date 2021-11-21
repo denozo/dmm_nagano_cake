@@ -5,6 +5,7 @@
     </div>
   </div>
 
+  <!--ジャンルの編集-->
   <%= form_with model:@genre, url:"/admin/genres/#{@genre.id}", local:true do |f| %>
   <div class="form_group row w-50">
     <label for="genre_name" class="col-md-3">ジャンル名</label>
@@ -18,3 +19,6 @@
   </div>
 
 </div>
+
+<!--フッター-->
+<%= render '/layouts/footer' %>

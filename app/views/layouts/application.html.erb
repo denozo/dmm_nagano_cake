@@ -30,7 +30,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="collapse navbar-collapse gnav" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
             <% if admin_signed_in? %>
               <li class="nav-item">
@@ -76,27 +76,27 @@
               </li>
             <% end %>
           </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item m-0">
+              <% if admin_signed_in? %>
+                <!--adminでログインしているときの検索窓-->
+                <%= form_tag(admin_items_path,:method => 'get') do %>
+                  <%= text_field_tag :search %>
+                  <%= submit_tag 'Search', :name => nil, class: 'mb-3' %>
+                <% end %>
+              <% else %>
+                <!--ログイン前の検索窓-->
+                <%= form_tag(items_path,:method => 'get') do %>
+                  <%= text_field_tag :search %>
+                  <%= submit_tag 'Search', :name => nil, class: 'mb-3' %>
+                 <% end %>
+              <% end %>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
 
-    <div class="d-flex">
-      <div class="row justify-content-end input-group">
-        <% if admin_signed_in? %>
-          <!--adminでログインしているときの検索窓-->
-          <%= form_tag(admin_items_path,:method => 'get') do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag 'Search', :name => nil, class: 'mb-3' %>
-          <% end %>
-        <% else %>
-          <!--ログイン前の検索窓-->
-          <%= form_tag(items_path,:method => 'get') do %>
-            <%= text_field_tag :search %>
-            <%= submit_tag 'Search', :name => nil, class: 'mb-3' %>
-           <% end %>
-        <% end %>
-      </div>
-    </div>
   </header>
 
   <%= yield %>

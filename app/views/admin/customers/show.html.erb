@@ -4,53 +4,57 @@
       <span class="h4 bg-light">　<%= @customer.last_name + @customer.first_name %>さんの会員詳細　</span>
     </div>
   </div>
-  
+
+    <!--会員情報の詳細表示-->
   <div class="row">
     <label class="col-md-2 p-2">会員ID</label>
     <div class="col-md-10 p-2"><%= @customer.id %></div>
   </div>
-  
+
   <div class="row">
     <label class="col-md-2 p-2">氏名</label>
     <div class="col-md-10 p-2"><%= @customer.last_name %><%= @customer.first_name %></div>
   </div>
-  
+
   <div class="row">
     <label class="col-md-2 p-2">フリガナ</label>
     <div class="col-md-10 p-2"><%= @customer.last_name_kana %><%= @customer.first_name_kana %></div>
   </div>
-  
+
   <div class="row">
     <label class="col-md-2 p-2">郵便番号</label>
     <div class="col-md-10 p-2"><%= @customer.postal_code %></div>
   </div>
-  
+
   <div class="row">
     <label class="col-md-2 p-2">住所</label>
     <div class="col-md-10 p-2"><%= @customer.address %></div>
   </div>
-  
+
   <div class="row">
     <label class="col-md-2 p-2">電話番号</label>
     <div class="col-md-10 p-2"><%= @customer.telephone_number %></div>
   </div>
-  
+
   <div class="row">
     <label class="col-md-2 p-2">メールアドレス</label>
     <div class="col-md-10 p-2"><%= @customer.email %></div>
   </div>
-  
+
   <div class="row">
     <label class="col-md-2 p-2">会員ステータス</label>
     <div class="col-md-10 p-2"><%= @customer.is_active_i18n %></div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-2 ml-3"></div>
     <div class="col-md-2"><%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-primary' %></div>
     <div class="col-md-5"><%= link_to "注文履歴一覧を見る", admin_root_path, class: 'btn btn-warning' %></div>
     <!--ここの注文履歴一覧はあとで設定-->
   </div>
-  
+
 
 </div>
+
+<!--フッター-->
+<%= render '/layouts/footer' %>

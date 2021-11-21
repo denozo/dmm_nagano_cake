@@ -5,6 +5,7 @@
     </div>
   </div>
 
+  <!--会員情報編集フィールドの設置-->
   <%= form_with model: @customer, url: admin_customer_path, local: true do |f| %>
   
     <div class="row">
@@ -77,4 +78,7 @@
     
   <% end %>
   
-</div> 
+</div>
+
+<!--フッター-->
+<%= render '/layouts/footer' %>

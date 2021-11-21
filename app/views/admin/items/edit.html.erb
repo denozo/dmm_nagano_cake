@@ -17,7 +17,7 @@
       </ul>
     <% end %>
   </div>
-
+  <!--商品情報の編集-->
   <div class="form-horizontal" role="form">
     <%= form_with model: @item, url:"/admin/items/#{@item.id}", local:true do |f| %>
 
@@ -92,3 +92,7 @@
   </div>
 
 </div>
+
+
+<!--フッター-->
+<%= render '/layouts/footer' %>
